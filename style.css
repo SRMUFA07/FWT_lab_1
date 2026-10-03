@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: 'National', sans-serif;
+    line-height: 1.6;
+    background-color: #fafafa;
+    color: #333;
+}
+
+.site-header {
+    background-color: #ffb143;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.site-header .logo {
+    margin: 0;
+    font-size: 1.8rem;
+}
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background-color: #fff3e0;
+}
+.burger-photo {
+    max-width: 50%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.description {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+/* табличка */
+.ingredients {
+    padding: 2rem;
+    background-color: #8b4800;
+    color: #fff;
+}
+.ingredients h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+th {
+    background-color: #bb9c13;
+}
+tr {
+    background-color: #ccae29;
+}
+
+/* футер */
+.site-footer {
+    background-color: #ffb143;
+    color: #eee;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+.site-footer a {
+    color: #ffcc80;
+    text-decoration: none;
+}
+.site-footer a:hover {
+    text-decoration: underline;
+}
