@@ -1,11 +1,12 @@
 body {
     margin: 0;
-    font-family: 'National', sans-serif;
+    font-family: 'Jost', 'National Park', sans-serif;
     line-height: 1.6;
     background-color: #fafafa;
     color: #333;
 }
 
+/* ===== Шапка ===== */
 .site-header {
     background-color: #ffb143;
     color: white;
@@ -13,10 +14,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 .site-header .logo {
     margin: 0;
     font-size: 1.8rem;
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: 1px;
 }
 .main-nav ul {
     list-style: none;
@@ -29,64 +36,85 @@ body {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 .main-nav a:hover {
-    text-decoration: underline;
+    background-color: rgba(255,255,255,0.25);
+    text-decoration: none;
 }
 
 .hero {
     text-align: center;
-    padding: 2rem;
-    background-color: #fff3e0;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
 }
 .burger-photo {
     max-width: 50%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+}
+.burger-photo:hover {
+    transform: scale(1.02);
 }
 .description {
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     font-size: 1.1rem;
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* табличка */
+/* ===== Таблица ===== */
 .ingredients {
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     background-color: #8b4800;
     color: #fff;
 }
 .ingredients h2 {
     margin-bottom: 1rem;
     text-align: center;
+    font-size: 1.6rem;
 }
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
 }
 th, td {
-    border: 1px solid #ddd;
-    padding: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.85rem 1rem;
     text-align: left;
 }
 th {
     background-color: #bb9c13;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 tr {
     background-color: #ccae29;
 }
+tr:nth-child(even) {
+    background-color: #b89a22;
+}
 
-/* футер */
+/* ===== Футер ===== */
 .site-footer {
     background-color: #ffb143;
     color: #eee;
     text-align: center;
-    padding: 1rem;
+    padding: 1.2rem 1rem;
     font-size: 0.9rem;
 }
 .site-footer a {
-    color: #ffcc80;
+    color: #fff3e0;
     text-decoration: none;
 }
 .site-footer a:hover {

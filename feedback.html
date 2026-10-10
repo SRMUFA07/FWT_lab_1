@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger BOB — Обратная связь</title>
+
+    <!-- Шрифт https://fonts.google.com/specimen/National+Park?query=national&preview.script=Latn-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:ital,wght@0,100..900;1,100..900&family=National+Park:wght@200..800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Jost', 'National Park', sans-serif;
+
+            background-image: url('images/login-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Тёмный полупрозрачный оверлей для читаемости */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(60, 20, 0, 0.55);
+            z-index: -1;
+        }
+
+        .feedback-container {
+            z-index: 1;
+            max-width: 30%;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(255, 140, 0, 0.12);
+            padding: 2.5rem 2.5rem 2rem;
+            border-top: 5px solid #ffb143;
+        }
+
+        .feedback-title {
+            font-size: 2rem;
+            color: #8b4800;
+            margin: 0 0 0.4rem;
+            text-align: center;
+        }
+
+        .feedback-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 0.95rem;
+            margin: 0 0 2rem;
+        }
+
+        /* Группа полей */
+        .form-group {
+            margin-bottom: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label,
+        .form-group .group-label {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: #5a3000;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .required {
+            color: #e53935;
+        }
+
+        /* Текстовые поля */
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: #333;
+            background: #fafafa;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #ffb143;
+            box-shadow: 0 0 0 3px rgba(255,177,67,0.2);
+            background: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Радио-кнопки */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.98rem;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .radio-label input[type="radio"] {
+            accent-color: #ffb143;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* Файл */
+        .file-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .form-group input[type="file"] {
+            padding: 0.5rem 0.7rem;
+            border: 1.5px dashed #ffb143;
+            border-radius: 8px;
+            background: #fffbf4;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .file-hint {
+            font-size: 0.82rem;
+            color: #999;
+        }
+
+        /* Чекбокс */
+        .checkbox-group {
+            background: #fff8f0;
+            border: 1.5px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-weight: 400 !important;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            color: #444;
+            cursor: pointer;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            accent-color: #ffb143;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        /* Кнопки */
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.85rem;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background-color: #ffb143;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(255,140,0,0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #e09a30;
+            box-shadow: 0 6px 16px rgba(255,140,0,0.4);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #555;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Ссылка назад */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.3rem;
+            font-size: 0.88rem;
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #ffb143;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Карточка с формой -->
+    <div class="feedback-container">
+        <h2 class="feedback-title">Обратная связь</h2>
+        <p class="feedback-subtitle">Мы рады вашим отзывам и предложениям!</p>
+
+        <form action="https://httpbin.org/post" method="POST" enctype="multipart/form-data" class="feedback-form">
+
+            <!-- ФИО -->
+            <div class="form-group">
+                <label for="fullname">ФИО <span class="required">*</span></label>
+                <input type="text" id="fullname" name="fullname" placeholder="Иванов Иван Иванович" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="text" id="email" name="email" placeholder="example@mail.ru" required>
+            </div>
+
+            <!-- Откуда узнали -->
+            <div class="form-group">
+                <label class="group-label">Откуда узнали о нас? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="source" value="internet"> Интернет
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="source" value="friends"> От друзей
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="source" value="social"> Социальные сети
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="source" value="ad"> Реклама
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="source" value="other"> Другое
+                    </label>
+                </div>
+            </div>
+
+            <!-- Тип обращения -->
+            <div class="form-group">
+                <label for="type">Тип обращения <span class="required">*</span></label>
+                <select id="type" name="type" required>
+                    <option value="" disabled selected>— Выберите тип —</option>
+                    <option value="complaint">Жалоба</option>
+                    <option value="suggestion">Предложение</option>
+                    <option value="question">Вопрос</option>
+                    <option value="gratitude">Благодарность</option>
+                </select>
+            </div>
+
+            <!-- Текст сообщения -->
+            <div class="form-group">
+                <label for="message">Текст сообщения <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="6" placeholder="Напишите ваше сообщение здесь..." required></textarea>
+            </div>
+
+            <!-- Вложения -->
+            <div class="form-group">
+                <label for="attachment">Вложения</label>
+                <div class="file-wrapper">
+                    <input type="file" id="attachment" name="attachment" multiple>
+                    <span class="file-hint">Вы можете прикрепить несколько файлов</span>
+                </div>
+            </div>
+
+            <!-- Согласие на обработку -->
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="consent" value="yes" required>
+                    <span>Даю согласие на обработку персональных данных <span class="required">*</span></span>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset" class="btn btn-secondary">Очистить</button>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </form>
+
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+
+</body>
+</html>
